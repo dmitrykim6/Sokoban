@@ -1,6 +1,12 @@
 public class Model {
-
-    Model(){
+    Viewer viewer;
+    Model(Viewer viewer){
+        this.viewer = viewer;
 
     }
+
+    public void doAction(String value){
+
+        viewer.update();
+    };
 }
