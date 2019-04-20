@@ -1,15 +1,48 @@
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
-public class Controller implements ActionListener {
-    Model model;
+public class Controller implements KeyListener {
+    private Model model;
+    String direction = "";
     Controller(Viewer viewer){
         model = new Model(viewer);
     }
 
-    public void actionPerformed(ActionEvent event){
-        String command = event.getActionCommand();
-        model.doAction(command);
+    public Model getModel(){
+        return model;
     }
+
+    public void keyTyped(KeyEvent event){
+
+    }
+
+    public void keyPressed(KeyEvent event){
+        int keyCode = event.getExtendedKeyCode();
+
+        switch (keyCode) {
+            case 37:
+                direction = "left";
+                break;
+            case 38:
+                direction = "up";
+                break;
+            case 39:
+                direction = "right";
+                break;
+            case 40:
+                direction = "down";
+                break;
+        }
+
+        model.move(direction);
+
+    }
+
+    public void keyReleased(KeyEvent event){
+
+    }
+
+
+
 
 }
