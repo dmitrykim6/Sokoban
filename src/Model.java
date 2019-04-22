@@ -11,9 +11,19 @@ public class Model {
     }
 
     public void move(String direction){
-//        System.out.println(direction);
-        x = x + 10;
-        y1 = y1 + 10;
+        if (direction.equals("left") && x1 > 0){
+            x = x - 10;
+            x1 = x1 - 10;
+        }else if(direction.equals("right") && x1 < 750){
+            x = x + 10;
+            x1 = x1 + 10;
+        }else if(direction.equals("up") && y1 > 0){
+            y = y - 10;
+            y1 = y1 - 10;
+        }else if(direction.equals("down") && y1 < 725){
+            y = y + 10;
+            y1 = y1 + 10;
+        }
         viewer.update();
-    };
+    }
 }
