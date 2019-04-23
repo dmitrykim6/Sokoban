@@ -1,29 +1,51 @@
 public class Model {
     private Viewer viewer;
-    int x, y;
-    int x1, y1;
+
+    int x, y, width, height;
+    int xBigRect, yBigRect, widthBigRect, heightBigRect;
+
     Model(Viewer viewer){
         this.viewer = viewer;
+        width = 50;
+        height = 50;
         x = 150;
         y = 150;
-        x1 = 300;
-        y1 = 300;
+        xBigRect = 300;
+        yBigRect = 200;
+        widthBigRect = 200;
+        heightBigRect = 150;
     }
 
     public void move(String direction){
-        if (direction.equals("left") && x1 > 0){
-            x = x - 10;
-            x1 = x1 - 10;
-        }else if(direction.equals("right") && x1 < 750){
-            x = x + 10;
-            x1 = x1 + 10;
-        }else if(direction.equals("up") && y1 > 0){
-            y = y - 10;
-            y1 = y1 - 10;
-        }else if(direction.equals("down") && y1 < 725){
-            y = y + 10;
-            y1 = y1 + 10;
+        if (direction.equals("left")){
+            moveLeft();
+        }else if(direction.equals("right")){
+            moveRight();
+        }else if(direction.equals("up")){
+            moveUp();
+        }else if(direction.equals("down")){
+            moveDown();
         }
+        check();
         viewer.update();
+    }
+
+    private void check() {
+        if (x >= xBigRect && (x + width) <= (xBigRect + widthBigRect) && y >= yBigRect && (y + height) <= (yBigRect + heightBigRect)) {
+            System.out.print("OK ");
+        }
+    }
+
+    private void moveLeft(){
+        x = x - 20;
+    }
+    private void moveRight(){
+        x = x + 20;
+    }
+    private void moveUp(){
+        y = y - 20;
+    }
+    private void moveDown(){
+        y = y + 20;
     }
 }
